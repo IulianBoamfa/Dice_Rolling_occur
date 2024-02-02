@@ -1,41 +1,92 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
-	<Project>
-		<Option title="Coursework" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
-		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/Coursework" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-				</Compiler>
-			</Target>
-			<Target title="Release">
-				<Option output="bin/Release/Coursework" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
-			</Target>
-		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Extensions>
-			<lib_finder disable_auto="1" />
-		</Extensions>
-	</Project>
-</CodeBlocks_project_file>
+#include <stdio.h>      //This library contains information regarding input/output functions and allow us to use functions like printf, scanf etc.
+#include <stdlib.h>     //This library contains information and functions to be used for memory allocation, conversions, etc. (rand, srand, etc)
+#include <time.h>       //This library contains information about time and date (time(null))
+
+
+
+int main()      //Is used to specify that the function is going to return an integer at the end, even 0.
+{
+    int faces, throws;      //Variable declaration of faces and throws as integers, means that these 2 variables will store integer values (input by the user).
+    int i, j, k;       //All variables declared as integers, will store integers value, and will be used to count the number of faces and throws, later on. k will be used in a loop to build the array.
+    int num;         //Num will store random numbers given by rand() function.
+    int numbers[500] = {};      //This is an array, it will serve us as a list which will store the throws obtained after rolling the dice.
+    int start, user;        //These 2 variables will store 2 integer values from the user which will be used to tell the program what to do (move on or stop).
+    float occur;       //Variable which will store the result of occurrences calculation. It is declared as float, in order to use 2 decimals after the point.
+    float times_appeared;       //Variable which will count for us how many times a number appears in our array. Declared as float in order to obtain those 2 decimals after the calculation.
+
+
+    printf("***** DICE ROLLING PROGRAM *****\n");       //This line prints the title of the project when we run the program.
+    printf("\nAuthors:\n->Iulian\n->Bianca\n->Robert\n->Abinajan\n->Anas\n");       //This line prints the list of authors of the project, after the title has been printed.
+    printf("\nShall we start? Press 1 (or 0 to exit): ");      //This line asks user for an input in order to decide to move on with the program or exit.
+    scanf("%d", &start);        //Variable start will store the input from the user to be used in the next lines.
+
+    if (start == 1)     //If the user input fits the condition, then the program will be executed.
+    {
+        printf("\nEnter the number of faces: ");        //Asks the user to input the number of faces for the dice.
+        scanf("%d", &faces);        //Stores the number of faces input by the user one line before within the variable faces.
+        printf("Enter the number of throws: ");     //Asks the user to input the number of throws.
+        scanf("%d", &throws);       //Stores the input from the user in the variable throws.
+
+
+
+        while (1)          //An infinite loop which allows the user to run the code until he/she wants to stop.
+            {
+                if ( faces < 25 && faces > 1 && throws > 1 && throws < 500)     //This condition verifies the inputs from the user, so the rules won`t be broken.
+                    {
+                        printf("\nGenerating throws:\n");       //Prints the top line of the block which contains the printed throws.
+                        srand(time(0));     //This function allows us to generate different random numbers every time the program is run, using time(null) function which returns the current time in seconds since 1st January 1970.
+
+                        for (k = 0; k < throws; k++)        //This loop takes the number of throws from the user and for each number from 0 to throws-1 will assign a random number to the right position in the array.
+                            {
+                                num = (rand() % faces) + 1;     //Variable num stores the random number generated for each throw
+                                printf("-> %d\n", num);     //This line prints every random number stored in variable num
+                                numbers[k] = num;       //This line stores in the array the value of num before it is overwritten during the next iterations.
+                            }
+                        for (i = 1; i <= faces; i++)        //This loop takes every face of the dice from 1 to number of faces input by the user in order to count the occurrences within the next lines.
+                            {
+                                times_appeared = 0;     //For every face of the dice, times_appeared is reset to 0, in order to start counting from 0 for every face counted. Else it will keep adding the number of appearances to the previous value.
+
+                                for (j = 0; j < throws; j++)        //This loop is used to get through the array, the list of throws in order to count the occurrences for each face(number).
+                                    {
+                                        if (numbers[j] == i)        //This line checks when the number of dice`s face is found in the list.
+                                        {
+                                            times_appeared++;       //Whenever the number of dice`s face is found, variable times_appeared will add 1, so we can count how many times the face was found.
+                                        }
+
+                                    }
+                                occur = (times_appeared*100)/throws;        //This line calculates the occurrences of the faces in the list of throws.
+                                printf("-> Occurrences of %d: %.2f%%\n", i, occur);     //This line prints the occurrences for every face of the dice.
+
+                            }
+                    }
+                else            //If the upper condition is not fulfilled, this statement will be run.
+                    {
+                        printf("Your parameters are incorrect, please read the following rules:\n1 < Number of Faces < 25\n1 < Number of throws < 500\n ");     //This line prints a message to the user, explaining that his input is not correct.
+                        printf("Enter the number of faces: ");      //After letting the user know the input is not correct, the program asks for a new input.
+                        scanf("%d", &faces);           //This line stores the new input to be tested/worked again.
+                        printf("Enter the number of throws: ");     //Same as 2 lines before, asks for a new input.
+                        scanf("%d", &throws);       //This line stores the new input to be tested/worked again.
+                    }
+                printf("\nDo you want to roll the dice again? Press 1 for YES. Press 0 to exit: ");     //This line allows the user to decide if he wants to roll the dice again, or to exit.
+                scanf("%d", &user);     //This line stores the user`s input in variable user.
+                if (user == 1)      //This line checks the answer of the user to decide wht to do next.
+                    {
+                        printf("\nEnter the number of faces: ");        //If the user wants to roll the dice again, the program asks for the input again.
+                        scanf("%d", &faces);        //Stores the new input in the variable faces. (overwrite)
+                        printf("Enter the number of throws: ");     //Asks for the number of throws as well.
+                        scanf("%d", &throws);       //Stores the new input in variable throws. (overwrite)
+                    }
+                else        //If the answer of the user doesn`t fullfill the condition above, else statement will be followed.
+                    {
+                        printf("\nThank you for your time. We hope you had fun. See you next time!\n");     //If the user chooses to leave, a goodbye message will be shown.
+                        break;      //And the program will be ended.
+                    }
+
+         }
+
+    }
+
+
+    return 0;       //Returns 0 as the result of the function int main().
+
+}
