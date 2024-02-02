@@ -16,7 +16,7 @@ int main()      //Is used to specify that the function is going to return an int
 
 
     printf("***** DICE ROLLING PROGRAM *****\n");       //This line prints the title of the project when we run the program.
-    printf("\nAuthors:\n->Iulian\n->Bianca\n->Robert\n->Abinajan\n->Anas\n");       //This line prints the list of authors of the project, after the title has been printed.
+    printf("\nAuthor:\n->Iulian\n");       //This line prints the list of authors of the project, after the title has been printed.
     printf("\nShall we start? Press 1 (or 0 to exit): ");      //This line asks user for an input in order to decide to move on with the program or exit.
     scanf("%d", &start);        //Variable start will store the input from the user to be used in the next lines.
 
