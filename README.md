@@ -1,19 +1,26 @@
-# Dice_Rolling_occur
-This is a program which counts the occurrences of the faces of a dice.
-The program has been written using C programming language.
+# Dice Rolling Program
 
-The task:
+- This C program allows you to simulate rolling a dice with a specified number of faces and a certain number of throws.
+- It calculates and displays the occurrences of each face and the percentage of occurrence.
 
-You are supposed to develop a program that will be generating random numbers based on
-the user inputs. Program is supposed to ask user for a number of faces of a dice and a number
-of throws .
-Program is supposed to generate random numbers between 1 and a number of faces and simulate throws based on
-number of throws given by the user. Program is supposed to store the number of occurrences
-of each number and calculate percentage of occurrence of each number.
-Program has to check if the parameters specified by the user are within given
-ranges, which are as follows:
-Number of faces – x, where 1 < x < 25
-Number of throws – x, where 1 < x < 500
-If the parameters given by the user are outside of the range, then program should
-print a message informing user about invalid parameters and ask the user for
-parameters once again.
+## About the Program
+
+- The program takes user input for the number of faces on the dice and the number of throws to simulate.
+- It ensures that user input adheres to specific rules, such as the number of faces being between 1 and 25, and the number of throws between 1 and 500.
+- The random numbers generated for each throw are displayed, and occurrences of each face are counted and displayed.
+- Users can choose to roll the dice again or exit the program.
+- The program provides a user-friendly interface for simulating dice throws and analyzing the results.
+
+## Usage
+
+1. Run the program.
+2. Follow the on-screen instructions to input the number of faces and throws.
+3. View the simulated dice throws and the occurrences of each face.
+4. Choose to roll the dice again or exit the program.
+
+## Notes
+
+- This program uses the C programming language.
+- It includes libraries such as stdio.h, stdlib.h, and time.h to facilitate input/output, memory allocation, and random number generation.
+
+Enjoy simulating dice rolls and analyzing the results with this program!
